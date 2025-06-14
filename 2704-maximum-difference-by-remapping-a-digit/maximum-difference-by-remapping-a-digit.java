@@ -36,7 +36,6 @@ class Solution {
         }
         return max - min;
     }
-
     public int minMaxDifference(int num) {
         return difference(num);
 
