@@ -1,5 +1,6 @@
 class Solution {
-        int mod = 1_000_000_007;
+    int mod = 1_000_000_007;
+
     // Arrays to store factorials and modular inverses
     static long[] revs = new long[100001]; // Not used in this version
     static int[] f = new int[100001];      // Factorials
@@ -48,6 +49,6 @@ class Solution {
     public long rev(long a) {
         if (a == 1)
             return a;
-        return mod - mod / a * rev(mod % a) % mod;
+        return mod - mod / a * rev(mod % a) % mod;    
     }
 }
