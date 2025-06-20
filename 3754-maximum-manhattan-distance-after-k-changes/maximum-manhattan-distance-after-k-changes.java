@@ -12,8 +12,8 @@ class Solution {
             
             int x = Math.abs(north - south);
             int y = Math.abs(east - west);
-            int MD = x + y;      
-            int dis = MD + Math.min(2 * k, i + 1 - MD); 
+            int MD = x + y;      //MD =Manhattan Distance
+            int dis = MD + Math.min(2 * k, i + 1 - MD); // Ensure changes are at most k
             ans = Math.max(ans, dis);
         }
         
