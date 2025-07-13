@@ -11,7 +11,6 @@ class MyStack {
     public int pop() {
         for(int i=0;i<q.size()-1;i++){
             q.add(q.remove());
-
         }
         int val=q.peek();
         q.remove();
@@ -19,21 +18,17 @@ class MyStack {
     }
     
     public int top() {
-       for(int i=0;i<q.size()-1;i++){
+        for(int i=0;i<q.size()-1;i++){
+            q.add(q.remove());
+        }
+        int val=q.peek();
         q.add(q.remove());
-       } 
-       int val=q.peek();
-       q.add(q.remove());
-       return val;
+        return val;
     }
     
     public boolean empty() {
-        if(q.size()==0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        if(q.size()==0) return true;
+        return false;
     }
 }
 
