@@ -6,7 +6,6 @@ class Solution {
             return process(s, "ba", y, "ab", x);
         }
     }
-
     private int process(String s, String firstPair, int firstScore, String secondPair, int secondScore) {
         StringBuilder firstPass = new StringBuilder();
         int score = 0;
