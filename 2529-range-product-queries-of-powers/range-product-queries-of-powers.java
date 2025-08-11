@@ -1,6 +1,6 @@
 class Solution {
     public int[] productQueries(int n, int[][] queries) {
-       final int MOD = 1000000007;
+        final int MOD = 1000000007;
         List<Integer> powers = new ArrayList<>();
         while (n > 0) {
             int lowBit = n & -n;
@@ -21,6 +21,6 @@ class Solution {
             int q = queries[i][1];
             result[i] = table[p][q];
         }
-        return result; 
+        return result;
     }
 }
