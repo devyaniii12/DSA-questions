@@ -11,7 +11,8 @@ class Solution {
         // }
         // return maxP;
 
-            //Optimal
+            //Optimal -Prefix–Suffix Algorithm
+            // T.C=O(N) S.C=O(1)
             int n=nums.length;
             int maxP=Integer.MIN_VALUE;
             int prefix=1;int suffix=1;
