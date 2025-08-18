@@ -11,17 +11,28 @@ class Solution {
         // return Arrays.equals(a,b);
 
 
-        //Better- HashMap
+        //Better- HashMap T.C=O(n)  S.C=O(n)
+        // if(s.length()!=t.length()) return false;
+        // Map<Character,Integer> mp=new HashMap<>();
+        // for(int i=0;i<s.length();i++){
+        //     char ch=s.charAt(i);
+        //     mp.put(ch,mp.getOrDefault(ch,0)+1);
+        // }
+        // for(int i=0;i<t.length();i++){
+        //     char ch=t.charAt(i);
+        //     if(!mp.containsKey(ch) || mp.get(ch)==0) return false;
+        //     mp.put(ch,mp.getOrDefault(ch,0)-1);
+        // }
+        // return true;
+
+
+        //Optimal 
         if(s.length()!=t.length()) return false;
-        Map<Character,Integer> mp=new HashMap<>();
-        for(int i=0;i<s.length();i++){
-            char ch=s.charAt(i);
-            mp.put(ch,mp.getOrDefault(ch,0)+1);
-        }
-        for(int i=0;i<t.length();i++){
-            char ch=t.charAt(i);
-            if(!mp.containsKey(ch) || mp.get(ch)==0) return false;
-            mp.put(ch,mp.getOrDefault(ch,0)-1);
+        int count[]=new int[26];
+        for(char c:s.toCharArray()) count[c-'a']++;
+        for(char c:t.toCharArray()){
+            count[c-'a']--;
+            if(count[c-'a']<0) return false;
         }
         return true;
     }
