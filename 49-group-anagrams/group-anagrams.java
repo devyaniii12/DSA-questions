@@ -20,7 +20,7 @@ class Solution {
 
 
 
-        //Best- HashMap + Frequency Count (No Sorting) T.c=O(N) S.C=O(N)
+        //Best- HashMap + Frequency Count (No Sorting) T.c=O(N*k) S.C=O(N*k) k=length of string
         Map<String,List<String>> mp=new HashMap<>();
         for(String s :strs){
             int[] charc=new int[26];
