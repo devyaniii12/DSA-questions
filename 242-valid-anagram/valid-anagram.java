@@ -26,7 +26,8 @@ class Solution {
         // return true;
 
 
-        //Optimal 
+        //Optimal - static array of  size 26
+        //T.C=O(n) S.C=O(1)
         if(s.length()!=t.length()) return false;
         int count[]=new int[26];
         for(char c:s.toCharArray()) count[c-'a']++;
