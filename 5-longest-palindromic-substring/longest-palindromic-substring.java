@@ -1,21 +1,22 @@
 class Solution {
     public String longestPalindrome(String s) {
-      for(int i=s.length();i>0;i--){
-        for(int j=0;j<=s.length()-i;j++){
-            if(palindrome(j,j+i-1,s)){
-                return s.substring(j,j+i);
+        String longMax="";
+        for(int i=0;i<s.length();i++){
+            for(int j=i;j<s.length();j++){
+                String a=s.substring(i,j+1);
+                if(isPalindrome(a) && (a.length()>longMax.length())){
+                    longMax=a;
+                }
             }
         }
-      }
-      return s;  
+        return longMax;
     }
-    boolean palindrome(int i,int j, String s){
-        while(i<j){
-            if(s.charAt(i)!=s.charAt(j)){
-                return false;
-            }
-            i++;
-            j--;
+    boolean isPalindrome(String a){
+        int left=0;int right=a.length()-1;
+        while(left<right){
+            if(a.charAt(left)!=a.charAt(right)) return false;
+            left++;
+            right--;
         }
         return true;
     }
