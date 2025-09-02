@@ -1,40 +1,11 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
-
-        //brute- T.C=O(nlog(n)) S.C=O(1) SOrting and compare
-
-        // if(s.length()!=t.length()) return false;
-        // char a[]=s.toCharArray();
-        // char[] b=t.toCharArray();
-        // Arrays.sort(a);
-        // Arrays.sort(b);
-        // return Arrays.equals(a,b);
-
-
-        //Better- HashMap T.C=O(n)  S.C=O(n)
-        // if(s.length()!=t.length()) return false;
-        // Map<Character,Integer> mp=new HashMap<>();
-        // for(int i=0;i<s.length();i++){
-        //     char ch=s.charAt(i);
-        //     mp.put(ch,mp.getOrDefault(ch,0)+1);
-        // }
-        // for(int i=0;i<t.length();i++){
-        //     char ch=t.charAt(i);
-        //     if(!mp.containsKey(ch) || mp.get(ch)==0) return false;
-        //     mp.put(ch,mp.getOrDefault(ch,0)-1);
-        // }
-        // return true;
-
-
-        //Optimal - static array of  size 26
-        //T.C=O(n) S.C=O(1)
-        if(s.length()!=t.length()) return false;
-        int count[]=new int[26];
-        for(char c:s.toCharArray()) count[c-'a']++;
-        for(char c:t.toCharArray()){
-            count[c-'a']--;
-            if(count[c-'a']<0) return false;
-        }
-        return true;
+        char ch1[] =s.toCharArray();
+        char ch2[] =t.toCharArray();
+        Arrays.sort(ch1);
+        Arrays.sort(ch2);
+        String s1=new String(ch1);
+        String t1=new String(ch2);
+        return s1.equals(t1);
     }
 }
