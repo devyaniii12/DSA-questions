@@ -29,31 +29,24 @@ public class Solution {
 
         ListNode temp1=headA;
         ListNode temp2=headB;
-        int countA=0;
+        int countA=0,countB=0;
         while(temp1!=null){
-            countA+=1;
+            countA++;
             temp1=temp1.next;
         }
-        int countB=0;
         while(temp2!=null){
-            countB+=1;
+            countB++;
             temp2=temp2.next;
         }
-        int n;
-        if(countA>countB){
-             n=countA-countB;
-        }else{
-            n=countB-countA;
-        }
+        int stepsize=0;
+        if(countA>countB)  stepsize=countA-countB;
+        else stepsize=countB-countA;
         temp1=headA;
         temp2=headB;
-        for(int i=1;i<=n;i++){
-            if(countA>countB){
-                temp1=temp1.next;
-            }
-            else{
-                temp2=temp2.next;
-            }
+
+        for(int i=0;i<stepsize;i++){
+            if(countA>countB) temp1=temp1.next;
+            else temp2=temp2.next;
         }
         while(temp1!=temp2){
             temp1=temp1.next;
