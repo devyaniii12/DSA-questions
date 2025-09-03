@@ -1,4 +1,3 @@
-import java.util.Arrays;
 class Solution {
     public int numberOfPairs(int[][] points) {
         Arrays.parallelSort(points, (p, q) -> {
@@ -8,12 +7,12 @@ class Solution {
         int ans=0;
         for(int i=0; i<n-1; i++){
             int y=Integer.MAX_VALUE, yi=points[i][1];
-            for(int j=i+1; j<n; j++){
+            for(int j = i+1; j<n; j++){
                 final int yj=points[j][1];
-                if(yj>=yi && y>yj){
+                if (yj>=yi && y>yj){//P[j] cannot be in between
                     ans++;
                     y=yj;
-                    if(yi==yj) break;
+                    if (yi==yj) break;
                 }
             }
         }
