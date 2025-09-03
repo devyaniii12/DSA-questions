@@ -10,53 +10,25 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-    //    ListNode temp1=list1;
-    //    ListNode temp2=list2;
-    //    ListNode head=new ListNode(100);
-    //    ListNode temp=head;
-    //    while(temp1!=null && temp2!=null){
-    //     if(temp1.val<temp2.val){
-    //         temp.next=new ListNode(temp1.val);
-    //         temp1=temp1.next;
-    //     }
-    //     else{
-    //         temp.next=new ListNode(temp2.val);
-    //         temp2=temp2.next;
-            
-    //     }
-    //     temp=temp.next;
-    //    }
-    //    if(temp1!=null){
-    //     temp.next=temp1;
-
-    //    }
-    //    else{
-    //     temp.next=temp2;
-    //    }
-    //    return head.next;
-
-    ListNode temp1=list1;
-    ListNode temp2=list2;
-    ListNode head=new ListNode(100);
-    ListNode temp=head;
-    while(temp1!=null && temp2!=null){
-        if(temp1.val<temp2.val){
-            temp.next=temp1;
-            temp=temp1;
-            temp1=temp1.next;
+        ListNode head=new ListNode(-100);
+        ListNode temp=head;
+        while(list1!=null && list2!=null){
+            if(list1.val<list2.val){
+                temp.next=list1;
+                list1=list1.next;
+            }
+            else{
+                temp.next=list2;
+                list2=list2.next;
+            }
+            temp=temp.next;
         }
-        else{
-            temp.next=temp2;
-            temp=temp2;
-            temp2=temp2.next;
+        if(list1!=null){
+            temp.next=list1;
         }
-    }
-    if(temp1!=null){
-        temp.next=temp1;
-    }
-    else{
-        temp.next=temp2;
-    }
-    return head.next;
+        if(list2!=null){
+            temp.next=list2;
+        }
+        return head.next;
     }
 }
