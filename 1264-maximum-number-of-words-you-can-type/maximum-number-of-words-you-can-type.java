@@ -9,7 +9,10 @@ class Solution {
         for(String word:words){
             boolean check=false;
             for(int i=0;i<word.length();i++){
-                if(set.contains(word.charAt(i))) check=true;;
+                if(set.contains(word.charAt(i))){
+                    check=true;
+                    break;
+                }
             }
             if(check==false) count++;
 
