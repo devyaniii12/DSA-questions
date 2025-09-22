@@ -11,12 +11,7 @@ class Solution {
         }
         Arrays.sort(arr);
         int ans=0;
-        int max=arr[0];
-        for(int j=1;j<arr.length;j++){
-            if(arr[j]>max){
-                max=arr[j];
-        }
-        }
+        int max=arr[nums.length-1];
         for(int k=0;k<arr.length;k++){
             if(arr[k]==max) ans+=max;
         }
