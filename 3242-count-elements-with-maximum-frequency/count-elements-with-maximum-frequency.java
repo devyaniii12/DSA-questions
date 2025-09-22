@@ -9,9 +9,13 @@ class Solution {
         for(int n:map.values()){
             arr[i++]=n;
         }
-        Arrays.sort(arr);
         int ans=0;
-        int max=arr[nums.length-1];
+        int max=arr[0];
+        for(int j=1;j<arr.length;j++){
+            if(arr[j]>max){
+                max=arr[j];
+        }
+        }
         for(int k=0;k<arr.length;k++){
             if(arr[k]==max) ans+=max;
         }
