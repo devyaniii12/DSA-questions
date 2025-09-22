@@ -4,7 +4,7 @@ class Solution {
         for(int i=0;i<nums.length;i++){
             map.put(nums[i],map.getOrDefault(nums[i],0)+1);
         }
-        int[] arr=new int[nums.length];
+        int[] arr=new int[map.size()];
         int i=0;
         for(int n:map.values()){
             arr[i++]=n;
