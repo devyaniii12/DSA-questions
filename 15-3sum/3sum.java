@@ -9,6 +9,8 @@ class Solution {
                 int sum=nums[i]+nums[left]+nums[right];
                 if(sum==0){
                     ans.add(Arrays.asList(nums[i],nums[left],nums[right]));
+                    while(left<right && nums[left]==nums[left+1]) left++;
+                    while(left<right && nums[right-1]==nums[right]) right--;
                     left++;
                     right--;
                 }
