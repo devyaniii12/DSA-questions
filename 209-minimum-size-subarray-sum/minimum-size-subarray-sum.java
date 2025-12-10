@@ -5,7 +5,7 @@ class Solution {
         int low=0;
         int sum=nums[low];
         
-        while(low<=high){
+        while(high<nums.length){
             if(sum<target){
                 if(high==nums.length-1) break;
                  high++;  
