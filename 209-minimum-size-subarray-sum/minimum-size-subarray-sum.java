@@ -11,7 +11,7 @@ class Solution {
                  high++;  
                 sum+=nums[high];
             }  
-            else if(sum>=target){
+            while(sum>=target){
                 res=Math.min(res,high-low+1);
                 low++;
                 sum-=nums[low-1];
