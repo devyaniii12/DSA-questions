@@ -1,23 +1,23 @@
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-        int n = nums.length;
-        int[] prefix = new int[n + 1];
+        int res=Integer.MAX_VALUE;
+        int high=0;
+        int low=0;
+        int sum=nums[low];
         
-        for (int i = 1; i <= n; i++) {
-            prefix[i] = prefix[i - 1] + nums[i - 1];
-        }
-
-        int minLen = Integer.MAX_VALUE;
-
-        for (int i = 0; i < n; i++) {
-            int required = target + prefix[i];
-            int bound = Arrays.binarySearch(prefix, required);
-            if (bound < 0) bound = -bound - 1; // find insertion point
-            if (bound <= n) {
-                minLen = Math.min(minLen, bound - i);
+        while(low<=high){
+            if(sum<target){
+                if(high==nums.length-1) break;
+                 high++;  
+                sum+=nums[high];
+            }  
+            else if(sum>=target){
+                res=Math.min(res,high-low+1);
+                low++;
+                sum-=nums[low-1];
             }
         }
-
-        return (minLen == Integer.MAX_VALUE) ? 0 : minLen;
+        if(res==Integer.MAX_VALUE) return 0;
+        return res;
     }
 }
