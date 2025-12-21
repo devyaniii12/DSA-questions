@@ -4,8 +4,8 @@ class Solution {
         int n=fruits.length;
         int res=-1;
         Map<Integer,Integer> map=new HashMap<>();
-        if(fruits.length<2) return 1;
-        if(fruits.length==2) return 2;
+        // if(fruits.length<2) return 1;
+        // if(fruits.length==2) return 2;
         for(int high=0;high<n;high++){
             int num=fruits[high];
             map.put(num,map.getOrDefault(num,0)+1);
