@@ -1,34 +1,43 @@
 class Solution {
     public String minWindow(String s, String t) {
-        HashMap<Character, Integer> map = new HashMap<>();
+        int m = s.length();
+        int n = t.length();
 
-        for (char x : t.toCharArray()) {
-            map.put(x, map.getOrDefault(x, 0) + 1);
+        if (m < n) return "";
+
+        int[] freqS = new int[256];
+        int[] freqT = new int[256];
+
+        for (int i = 0; i < n; i++) {
+            freqT[t.charAt(i)]++;
         }
 
-        int matched = 0;
-        int start = 0;
-        int minLen = s.length() + 1;
-        int subStr = 0;
-        for (int endWindow = 0; endWindow < s.length(); endWindow++) {
-            char right = s.charAt(endWindow);
-            if (map.containsKey(right)) {
-                map.put(right, map.get(right) - 1);
-                if (map.get(right) == 0) matched++;
-            }
+        int low = 0;
+        int start = -1;
+        int res = Integer.MAX_VALUE;
 
-            while (matched == map.size()) {
-                if (minLen > endWindow - start + 1) {
-                    minLen = endWindow - start + 1;
-                    subStr = start;
+        for (int high = 0; high < m; high++) {
+            freqS[s.charAt(high)]++;
+
+            while (sahi(freqS, freqT)) {
+                if (high - low + 1 < res) {
+                    res = high - low + 1;
+                    start = low;
                 }
-                char deleted = s.charAt(start++);
-                if (map.containsKey(deleted)) {
-                    if (map.get(deleted) == 0) matched--;
-                    map.put(deleted, map.get(deleted) + 1);
-                }
+
+                // shrink window
+                freqS[s.charAt(low)]--;
+                low++;
             }
         }
-        return minLen > s.length() ? "" : s.substring(subStr, subStr + minLen);
+
+        return start == -1 ? "" : s.substring(start, start + res);
+    }
+
+    boolean sahi(int[] freqS, int[] freqT) {
+        for (int i = 0; i < 256; i++) {
+            if (freqS[i] < freqT[i]) return false;
+        }
+        return true;
     }
 }
