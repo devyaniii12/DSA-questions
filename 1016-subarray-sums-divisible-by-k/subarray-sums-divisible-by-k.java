@@ -6,7 +6,10 @@ class Solution {
         map.put(0,1);
         for(int i=0;i<nums.length;i++){
             sum+=nums[i];
-            int redpart=((sum%k)+k) % k;
+            int redpart=(sum%k);
+            if(redpart<0){
+                redpart=redpart+k;
+            }
             if(map.containsKey(redpart)){
                 ans+=map.get(redpart);
             }
