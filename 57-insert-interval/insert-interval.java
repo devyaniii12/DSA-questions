@@ -10,8 +10,8 @@ class Solution {
                 newInterval=interval;
             }
             else{
-                newInterval[0]=Math.min(newInterval[0],interval[0]);
-                newInterval[1]=Math.max(newInterval[1],interval[1]);
+                newInterval[0]=Math.min(interval[0],newInterval[0]);
+                newInterval[1]=Math.max(interval[1],newInterval[1]);
             }
         }
         ans.add(newInterval);
