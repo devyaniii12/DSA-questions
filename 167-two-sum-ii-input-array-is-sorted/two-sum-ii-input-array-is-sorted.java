@@ -6,12 +6,13 @@ class Solution {
             if(numbers[left]+numbers[right]==target){
                 return new int[]{left+1,right+1};
             }
-            else if(numbers[left]+numbers[right]>target){
+            else if((numbers[left]+numbers[right])<target){
+                left++;
+            }
+            else{
                 right--;
             }
-            else left++;
         }
         return new int[]{-1,-1};
     }
-
 }
