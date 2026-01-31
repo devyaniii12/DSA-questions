@@ -1,31 +1,23 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> ans=new ArrayList<>();
-        List<Integer> ds=new ArrayList<>();
-        boolean[] isVisited=new boolean[nums.length];
-        permutations(nums,ds,ans,isVisited);
-        return ans;
-
+       List<List<Integer>> ans=new ArrayList<>();
+       List<Integer> list=new ArrayList<>();
+       boolean[] used=new boolean[nums.length];
+       helper(nums,used,list,ans);
+       return ans; 
     }
-    public void permutations(int[] nums,List<Integer> ds,List<List<Integer>> ans,boolean[] isVisited){
-        int n=nums.length;
-        if(ds.size()==n){
-            List<Integer> list=new ArrayList<>();
-            for(int i=0;i<n;i++){
-                list.add(ds.get(i));
-            }
-            ans.add(list);
+    void helper(int[] nums,boolean[] used,List<Integer> list,List<List<Integer>> ans){
+        if(list.size()==nums.length){
+            ans.add(new ArrayList<>(list));
             return;
         }
-         for(int i=0;i<n;i++){
-            
-            if(isVisited[i]==false){
-                ds.add(nums[i]);
-                isVisited[i]=true;
-                permutations(nums,ds,ans,isVisited);
-                isVisited[i]=false;
-                ds.remove(ds.size()-1);
-         }
-    }
+        for(int i=0;i<nums.length;i++){
+            if(used[i]==true) continue;
+            used[i]=true;
+            list.add(nums[i]);
+            helper(nums,used,list,ans);
+            list.remove(list.size()-1);
+            used[i]=false;
+        }
     }
 }
