@@ -8,13 +8,15 @@ class Solution {
     }
 
     void helper(int start, int[] nums, List<Integer> list, List<List<Integer>> ans) {
-        ans.add(new ArrayList<>(list));
-        for (int idx = start; idx < nums.length; idx++) {
-            if(idx>start && nums[idx]==nums[idx-1]) continue;
-            // helper(idx + 1, nums, list, ans);
-            list.add(nums[idx]);
-            helper(idx + 1, nums, list, ans);
+      
+            ans.add(new ArrayList<>(list));
+        for (int i = start; i < nums.length; i++) {
+            if (i > start && nums[i] == nums[i - 1])
+                continue;
+            list.add(nums[i]);
+            helper(i + 1, nums, list, ans);
             list.remove(list.size() - 1);
         }
+
     }
 }
