@@ -5,14 +5,13 @@ class Solution {
         helper(0,nums,list,ans);
         return ans;
     }
-    void helper(int i,int[] nums,List<Integer> list,List<List<Integer>> ans){
-        if(i==nums.length){
-            ans.add(new ArrayList<>(list));
-            return;
+    void helper(int start,int[] nums,List<Integer> list,List<List<Integer>> ans){
+        ans.add(new ArrayList<>(list));
+
+        for(int i=start;i<nums.length;i++){
+            list.add(nums[i]);
+            helper(i+1,nums,list,ans);
+            list.remove(list.size()-1);
         }
-        helper(i+1,nums,list,ans);
-        list.add(nums[i]);
-        helper(i+1,nums,list,ans);
-        list.remove(list.size()-1);
     }
 }
