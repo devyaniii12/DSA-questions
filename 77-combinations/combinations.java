@@ -12,9 +12,10 @@ class Solution {
         }
         if(start>n) return;
 
-helper(start+1,n,k,list,ans);
+
         list.add(start);
         helper(start+1,n,k-1,list,ans);
         list.remove(list.size()-1);
+        helper(start+1,n,k,list,ans);
     }
 }
