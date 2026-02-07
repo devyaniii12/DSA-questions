@@ -1,34 +1,29 @@
 class Solution {
     public List<List<String>> partition(String s) {
-        List<List<String>> res=new ArrayList<>();
-        List<String> palindromeString=new ArrayList<>();
-        helperFunction(0,s,palindromeString,res);
-        return res;
+        List<List<String>> ans=new ArrayList<>();
+        List<String> list=new ArrayList<>();
+        helper(0,s,list,ans);
+        return ans;
     }
-    public void helperFunction(int index,String s,List<String> palindromeString,List<List<String>> res){
-        if(index==s.length()){
-            res.add(new ArrayList<>(palindromeString));
+    void helper(int start,String s,List<String> list,List<List<String>> ans){
+        if(start==s.length()){
+            ans.add(new ArrayList<>(list));
             return;
         }
-        for(int i=index;i<s.length();i++){
-            if(Palindrome(index,i,s)){
-                palindromeString.add(s.substring(index,i+1));
-                helperFunction(i+1,s,palindromeString,res);
-                palindromeString.remove(palindromeString.size()-1);
+        for(int end=start;end<s.length();end++){
+            if(isPalindrome(start,end,s)){
+                list.add(s.substring(start,end+1));
+                helper(end+1,s,list,ans);
+                list.remove(list.size()-1);
             }
         }
     }
-
-    public boolean Palindrome(int a,int b,String s){
-        while(a<b){
-            if(s.charAt(a)!=s.charAt(b)){
-                return false;
-            }
-            a++;
-            b--;
-           
+    boolean isPalindrome(int i,int j,String s){
+        while(i<j){
+            if(s.charAt(i)!=s.charAt(j)) return false;
+            i++;
+            j--;
         }
-         return true; 
-    }    
-    
+        return true;
+    }
 }
