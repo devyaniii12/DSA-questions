@@ -15,30 +15,25 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> ans=new ArrayList<>(); 
-        int level=levels(root);
-        for(int i=1;i<=level;i++){
-            List<Integer> l=new ArrayList<>();
-            if(i%2==0) nlevelpost(root,l,i);
-            if(i%2!=0) nlevelpre(root,l,i);
-            ans.add(l);
+        List<List<Integer>> ans=new ArrayList<>();
+        Queue<TreeNode> q=new LinkedList<>();
+        if(root!=null) q.add(root);
+        boolean leftToRight=true;
+        while(!q.isEmpty()){
+            int size=q.size();
+            List<Integer> list=new ArrayList<>();
+            for(int i=0;i<size;i++){
+                TreeNode curr=q.poll();
+                list.add(curr.val);
+                if(curr.left!=null) q.add(curr.left);
+                if(curr.right!=null) q.add(curr.right);
+            }
+            if(!leftToRight){
+                Collections.reverse(list);
+            }
+            ans.add(list);
+            leftToRight=!leftToRight;
         }
         return ans;
-    }
-    int levels(TreeNode root){
-        if(root==null) return 0;
-        return 1+Math.max(levels(root.left),levels(root.right));
-    }
-    void nlevelpre(TreeNode root,List<Integer> l,int level){
-        if(root==null) return;
-        if(level==1) l.add(root.val);
-        nlevelpre(root.left,l,level-1);
-        nlevelpre(root.right,l,level-1);
-    }
-    void nlevelpost(TreeNode root,List<Integer> l,int level){
-        if(root==null) return;
-        if(level==1) l.add(root.val);
-        nlevelpost(root.right,l,level-1);
-        nlevelpost(root.left,l,level-1);
     }
 }
