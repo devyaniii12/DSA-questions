@@ -16,16 +16,17 @@
 class Solution {
     public int pathSum(TreeNode root, int targetSum) {
         if(root==null) return 0;
-       int count=noOfPaths(root,(long)targetSum);
-        count+=pathSum(root.left,targetSum)+pathSum(root.right,targetSum);
-        return count;
+        return helper(root,targetSum)+pathSum(root.left,targetSum)+pathSum(root.right,targetSum);
     }
-    public int noOfPaths(TreeNode root, long targetSum){
-        int count=0;
+
+    int helper(TreeNode root,long targetSum){
         if(root==null) return 0;
-        if(root!=null && (long)root.val==targetSum){
+        int count=0;
+        if(root.val==targetSum){
             count++;
         }
-        return count+noOfPaths(root.left,targetSum-(long)root.val)+noOfPaths(root.right,targetSum-(long)root.val);
+        count+=helper(root.left,targetSum-root.val);
+        count+=helper(root.right,targetSum-root.val);
+        return count;
     }
 }
