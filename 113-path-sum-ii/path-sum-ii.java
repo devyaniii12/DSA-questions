@@ -15,18 +15,21 @@
  */
 class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        List<List<Integer>> arr=new ArrayList<>();
-        hasPathSum(root,targetSum,new ArrayList<>(),arr);
-        return arr;
+        List<List<Integer>> ans=new ArrayList<>();
+        List<Integer> path=new ArrayList<>();
+        helper(root,targetSum,path,ans);
+        return ans;
     }
-    public void hasPathSum(TreeNode root, int targetSum,List<Integer> ans,List<List<Integer>> arr){
-       if(root==null) return;
-       ans.add(root.val);
-       if( root.left==null && root.right==null && root.val==targetSum){
-        arr.add(new ArrayList<>(ans));
-       } 
-    hasPathSum(root.left,targetSum-root.val,ans,arr);
-    hasPathSum(root.right,targetSum-root.val,ans,arr);
-    ans.remove(ans.size()-1);
-
-}}
+    void helper(TreeNode root, int targetSum,  List<Integer> path,List<List<Integer>> ans){
+        if(root==null) return;
+        path.add(root.val);
+        if(root.left==null && root.right==null){
+            if(targetSum==root.val){
+                ans.add(new ArrayList<>(path));
+            }
+        }
+        helper(root.left,targetSum-root.val,path,ans);
+        helper(root.right,targetSum-root.val,path,ans);
+        path.remove(path.size()-1);
+    }
+}
