@@ -5,11 +5,19 @@ class Solution {
         boolean[] visited=new boolean[n];
         for(int i=0;i<n;i++){
             if(!visited[i]){
-                bfs(i,isConnected,visited);
+                dfs(i,isConnected,visited);
                 provinces++;
             }
         }
         return provinces;
+    }
+    void dfs(int start,int[][] isConnected, boolean[] visited){
+        visited[start]=true;
+        for(int i=0;i<isConnected.length;i++){
+            if(isConnected[start][i]==1 && !visited[i]){
+                dfs(i,isConnected,visited);
+            }
+        }
     }
     void bfs(int start,int[][] isConnected,boolean[] visited){
         Queue<Integer> q=new LinkedList<>();
