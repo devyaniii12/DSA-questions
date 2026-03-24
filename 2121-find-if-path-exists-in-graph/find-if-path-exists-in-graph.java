@@ -10,21 +10,35 @@ class Solution {
             adj.get(e[1]).add(e[0]);
         }
 
-        Queue<Integer> q=new LinkedList<>();
+        // Queue<Integer> q=new LinkedList<>();
         boolean[] visited=new boolean[n];
-        q.add(source);
+        // q.add(source);
+        // visited[source]=true;
+
+        // while(!q.isEmpty()){
+        //     int node=q.poll();
+
+        //     if(node==destination) return true;
+        //     for(int val:adj.get(node)){
+        //         if(!visited[val]){
+        //             q.add(val);
+        //             visited[val]=true;
+        //         }
+        //     }
+        // }
+        
+    
+        return dfs(adj,source,destination,visited);
+    }
+   boolean dfs(List<List<Integer>> adj, int source, int destination,boolean[] visited){
+        if(destination==source) return true;
         visited[source]=true;
 
-        while(!q.isEmpty()){
-            int node=q.poll();
-
-            if(node==destination) return true;
-            for(int val:adj.get(node)){
-                if(!visited[val]){
-                    q.add(val);
-                    visited[val]=true;
-                }
-            }
+        for(int ele:adj.get(source)){
+           
+           if(!visited[ele]) {
+            if(dfs(adj,ele,destination,visited)) return true;
+           }
         }
         return false;
     }
