@@ -2,12 +2,10 @@ class Solution {
     public boolean isBipartite(int[][] graph) {
         int[] visited=new int[graph.length];
         Arrays.fill(visited,-1);
-        
+
         for(int i=0;i<graph.length;i++){
             if(visited[i]==-1){
-                if(!bfs(i,graph,visited)){
-                    return false;
-                }
+                if(!bfs(i,graph,visited)) return false;
             }
         }
         return true;
@@ -19,7 +17,7 @@ class Solution {
 
         while(!q.isEmpty()){
             int ele=q.poll();
-            
+
             for(int nei:graph[ele]){
                 if(visited[nei]==-1){
                     visited[nei]=1-visited[ele];
@@ -31,6 +29,5 @@ class Solution {
             }
         }
         return true;
-
     }
 }
