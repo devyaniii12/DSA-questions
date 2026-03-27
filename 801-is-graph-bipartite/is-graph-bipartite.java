@@ -5,7 +5,8 @@ class Solution {
 
         for(int i=0;i<graph.length;i++){
             if(visited[i]==-1){
-                if(!bfs(i,graph,visited)) return false;
+                // if(!bfs(i,graph,visited)) return false;
+                if(!dfs(i,0,graph,visited)) return false;
             }
         }
         return true;
@@ -27,6 +28,18 @@ class Solution {
                     return false;
                 }
             }
+        }
+        return true;
+    }
+
+    boolean dfs(int node,int color,int[][] graph,int[] visited){
+        visited[node]=color;
+
+        for(int nei:graph[node]){
+            if(visited[nei]==-1){
+                if(!dfs(nei,1-color,graph,visited))return false;
+            }
+            else if(visited[nei]==color) return false;
         }
         return true;
     }
