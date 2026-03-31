@@ -9,8 +9,8 @@ class Solution {
         for(int[] arr:prerequisites){
             int u=arr[0];
             int v=arr[1];
-            adj.get(u).add(v);
-            indegree[v]++;
+            adj.get(v).add(u);
+            indegree[u]++;
         }
 
         Queue<Integer> q=new LinkedList<>();
