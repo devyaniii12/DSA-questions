@@ -9,7 +9,6 @@ class Solution {
                 pq.poll();
                 pq.add(nums[i]);
             }
-            if(nums[i]<=pq.peek()) continue;
         }
         return pq.peek();
     }
