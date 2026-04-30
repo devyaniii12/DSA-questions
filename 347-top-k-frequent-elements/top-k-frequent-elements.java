@@ -29,20 +29,22 @@ class Solution {
         for(Map.Entry<Integer,Integer> entry:mp.entrySet()){
             int val=entry.getKey();
             int freq=entry.getValue();
-            Pair curr=pq.peek();
             if(pq.size()<k){
                 pq.add(new Pair(freq,val));
             }
             else{
+                Pair curr=pq.peek();
                 if(curr.freq<freq){
                     pq.poll();
                     pq.add(new Pair(freq,val));
                 }
             }
         }
-        for(int i=0;i<k;i++){
-            Pair pp=pq.poll();
-            ans[i]=pp.val;
+        int i=0;
+        while(!pq.isEmpty()){
+            Pair pp=pq.peek();
+            ans[i++]=pp.val;
+            pq.poll();
         }
         return ans;
     }
