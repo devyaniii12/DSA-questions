@@ -34,11 +34,11 @@ class Solution {
             }
             else{
                 Pair curr=pq.peek();
-                if(curr.freq<freq){
-                    pq.poll();
+                // if(curr.freq<freq){
+                //     pq.poll();
                     pq.add(new Pair(freq,val));
+                    pq.poll();
                 }
-            }
         }
         int i=0;
         while(!pq.isEmpty()){
