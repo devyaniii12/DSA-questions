@@ -42,9 +42,8 @@ class Solution {
         }
         int i=0;
         while(!pq.isEmpty()){
-            Pair pp=pq.peek();
+            Pair pp=pq.poll();
             ans[i++]=pp.val;
-            pq.poll();
         }
         return ans;
     }
