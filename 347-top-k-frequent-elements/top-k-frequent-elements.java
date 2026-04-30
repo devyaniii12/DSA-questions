@@ -1,22 +1,49 @@
+class Pair{
+    int freq;
+    int val;
+    Pair(int freq,int val){
+        this.freq=freq;
+        this.val=val;
+    }
+}
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        Map<Integer,Integer> freqMap=new HashMap<>();
-        for(int num:nums){
-            freqMap.put(num,freqMap.getOrDefault(num,0)+1);
-        }
-        PriorityQueue<Integer> minHeap=new PriorityQueue<>((a, b) -> freqMap.get(a)-freqMap.get(b));
-
-        for(int num:freqMap.keySet()) 
-        {
-            minHeap.offer(num);
-            if(minHeap.size()>k) {
-                minHeap.poll();
+        int[] ans=new int[k];
+        Map<Integer,Integer> mp=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            if(mp.containsKey(nums[i])){
+                mp.put(nums[i],mp.getOrDefault(nums[i],0)+1);
+            }
+            else{
+                mp.put(nums[i],1);
             }
         }
-        int[] result=new int[k];
-        for(int i=k-1;i>=0;i--){
-            result[i]=minHeap.poll();
+        PriorityQueue<Pair> pq=new PriorityQueue<>(
+            (a,b)->{
+                if(a.freq!=b.freq)
+                return a.freq-b.freq;
+                return a.val-b.val;
+            }
+        );
+
+        for(Map.Entry<Integer,Integer> entry:mp.entrySet()){
+            int val=entry.getKey();
+            int freq=entry.getValue();
+            Pair curr=pq.peek();
+            if(pq.size()<k){
+                pq.add(new Pair(freq,val));
+            }
+            else{
+                if(curr.freq<freq){
+                    pq.poll();
+                    pq.add(new Pair(freq,val));
+                }
+            }
         }
-        return result;
+        for(int i=0;i<k;i++){
+            Pair pp=pq.poll();
+            ans[i]=pp.val;
+        }
+        return ans;
     }
 }
