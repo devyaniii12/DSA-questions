@@ -1,12 +1,16 @@
 class Solution {
+    Map<Integer,Integer> mp=new HashMap<>();
     public int climbStairs(int n) {
-        if(n<=2) return n;
-        int first=1,second=2,third=0;
-        for(int i=3;i<=n;i++){
-            third=first+second;
-            first=second;
-            second=third;
-        }
-        return second;
+        return helper(0,n);
+    }
+    int helper(int i,int n){
+        if(i==n) return 1;
+        if(i>n) return 0;
+        if(mp.containsKey(i)) return mp.get(i);
+        int ans1=helper(i+1,n);
+        int ans2=helper(i+2,n);
+        int ans=ans1+ans2;
+        mp.put(i,ans);
+        return ans;
     }
 }
