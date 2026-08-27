@@ -1,6 +1,6 @@
 class Solution {
+    Map<Integer,Integer> mp=new HashMap<>();
     public int fib(int n) {
-        Map<Integer,Integer> mp=new HashMap<>();
         if(n<=1){
             mp.put(n,n);
             return n;
